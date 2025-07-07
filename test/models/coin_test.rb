@@ -38,4 +38,11 @@ class CoinTest < ActiveSupport::TestCase
     assert_not duplicate.valid?
     assert_includes duplicate.errors[:symbol], "has already been taken"
   end
+
+  test "should soft delete coin" do
+    deleted_coin = Coin.create!(name: "DeletedCoin", symbol: "DEL", deleted_at: Time.current)
+    assert deleted_coin.deleted?
+    assert_not Coin.active.exists?(deleted_coin.id)
+    assert_not Coin.where(id: deleted_coin.id).present?
+  end
 end

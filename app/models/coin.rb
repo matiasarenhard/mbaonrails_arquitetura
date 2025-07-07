@@ -1,4 +1,6 @@
 class Coin < ApplicationRecord
+  include SoftDeletable
+
   validates :name, presence: true, uniqueness: true
   validates :symbol, presence: true, uniqueness: true
 end
