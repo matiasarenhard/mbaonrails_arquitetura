@@ -1,4 +1,12 @@
 class Api::V1::CoinLogsController < Api::V1::ApplicationController
+  def index
+    coin_logs = CoinLogQuery.new(coin_id: params[:coin_id],
+                                 date_start: params[:date_start],
+                                 date_end: params[:date_end]).call
+
+    render json: coin_logs
+  end
+
   def create
     result = CreateCoinLogProcess.call(coin_id: coin_params[:coin_id], price: coin_params[:price])
 
