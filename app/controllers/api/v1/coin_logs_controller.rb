@@ -1,10 +1,8 @@
 class Api::V1::CoinLogsController < Api::V1::ApplicationController
   def index
-    coin_logs = CoinLogQuery.new(coin_id: params[:coin_id],
-                                 date_start: params[:date_start],
-                                 date_end: params[:date_end]).call
-
-    render json: coin_logs
+    query = CoinLogQuery.new(coin_id: params[:coin_id], date_start: params[:date_start], date_end: params[:date_end])
+    pagy, coin_logs = pagy(query.call)
+    render json: { coin_logs: coin_logs, pagy: pagy }
   end
 
   def create
