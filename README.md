@@ -57,10 +57,6 @@ Listar todas as moedas:
 ```
  curl -X GET http://localhost:3000/api/v1/coins
 ```
-Detalhes de uma moeda: 
-```
- curl -X GET http://localhost:3000/api/v1/coins/COIN_ID
-```
 Nova moeda: 
 ```
   curl -X POST http://localhost:3000/api/v1/coins \
@@ -71,8 +67,13 @@ Atualizar moeda:
 ```
 curl -X PATCH http://localhost:3000/api/v1/coins/COIN_ID \
   -H "Content-Type: application/json" \
-  -d '{"coin": {"name": "Bitcoin Updated", "symbol": "BTCU"}}'
+  -d '{"coin": {"name": "NewCoin", "symbol": "NWC"}}'
 ```
+Detalhes de uma moeda: 
+```
+ curl -X GET http://localhost:3000/api/v1/coins/COIN_ID
+```
+
 Gravar atualização de preço de uma moeda: 
 ```
 curl -X POST http://localhost:3000/api/v1/coin_logs \
@@ -81,7 +82,7 @@ curl -X POST http://localhost:3000/api/v1/coin_logs \
 ```
 Listar histórico de preço de uma moeda: 
 ```
- curl -X GET "http://localhost:3000/api/v1/coin_logs?coin_id=381801073&date_start=2025-07-01T00:00:00Z&date_end=2025-07-31T23:59:59Z"
+ curl -X GET "http://localhost:3000/api/v1/coin_logs?coin_id=381801073&date_start=2025-07-01T00:00:00Z&date_end=2030-01-01T23:59:59Z"
 ```
 Deletar moeda:
 ```
