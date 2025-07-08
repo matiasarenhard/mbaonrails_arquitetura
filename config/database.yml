@@ -26,8 +26,13 @@ default: &default
 
 
 development:
-  <<: *default
-  database: mbaonrails_arquitetura_development
+  primary: &primary_development
+    <<: *default
+    database: mbaonrails_arquitetura_development
+  cache:
+    <<: *primary_development
+    database: mbaonrails_arquitetura_development_cache
+    migrations_paths: db/cache_migrate
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.

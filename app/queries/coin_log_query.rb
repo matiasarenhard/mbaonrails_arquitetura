@@ -8,7 +8,9 @@ class CoinLogQuery
   end
 
   def call
-    run
+    Rails.cache.fetch([ "coin_logs", coin_id, date_start, date_end ], expires_in: 2.hours) do
+      run
+    end
   end
 
   private
