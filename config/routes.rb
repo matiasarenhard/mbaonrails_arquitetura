@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :coins
+      resources :coin_logs, only: [ :show, :create ]
     end
   end
 end
