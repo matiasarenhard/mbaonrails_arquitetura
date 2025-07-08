@@ -15,7 +15,7 @@ class Api::V1::CoinsController < Api::V1::ApplicationController
     @coin = Coin.new(coin_params)
 
     if @coin.save
-      render json: @coin, status: :created, location: @coin
+      render json: @coin, status: :created
     else
       render json: @coin.errors, status: :unprocessable_entity
     end
