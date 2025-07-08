@@ -30,7 +30,7 @@ class Api::V1::CoinsController < Api::V1::ApplicationController
   end
 
   def destroy
-    @coin.destroy!
+    @coin.soft_delete
   end
 
   private
