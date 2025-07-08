@@ -45,4 +45,10 @@ class CoinTest < ActiveSupport::TestCase
     assert_not Coin.active.exists?(deleted_coin.id)
     assert_not Coin.where(id: deleted_coin.id).present?
   end
+
+  test "should has many coin logs" do
+    coin = coins(:ethereum)
+    assert_respond_to coin, :coin_logs
+    assert coin.coin_logs.any?
+  end
 end

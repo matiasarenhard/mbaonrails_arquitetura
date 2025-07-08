@@ -1,0 +1,7 @@
+bitcoin:
+  coin: bitcoin
+  price: 100
+
+ethereum:
+  coin: ethereum
+  price: 100
