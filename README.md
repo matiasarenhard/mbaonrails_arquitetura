@@ -13,15 +13,17 @@ Este é um projeto desenvolvido como parte do curso de Ruby on Rails. O objetivo
 - [PostgreSQL](https://www.postgresql.org/) 
 
 ## 🚀 Como rodar o projeto localmente
+Este projeto utiliza DevContainer. Lembre-se de instalar a extensão no VSCode, caso ainda não tenha
 
 ```bash
 # Clone o repositório
 git clone git@github.com:matiasarenhard/mbaonrails_arquitetura.git
 cd mbaonrails_arquitetura
 
-# abra o VSCode
+# Abra o VSCode
 code .
-# Inicie o projeto dentro do dev container
+
+# Abra um terminal dentro do VSCode e execute os comandos:
 bundle install
 bin/rails db:create db:migrate db:seed
 bin/rails dev:cache
