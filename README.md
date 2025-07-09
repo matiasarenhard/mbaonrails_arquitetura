@@ -13,7 +13,7 @@ Este é um projeto desenvolvido como parte do curso de Ruby on Rails. O objetivo
 - [PostgreSQL](https://www.postgresql.org/) 
 
 ## 🚀 Como rodar o projeto localmente
-Este projeto utiliza DevContainer. Lembre-se de instalar a extensão no VSCode, caso ainda não tenha
+Este projeto utiliza DevContainer. Lembre-se de instalar a extensão no VSCode, caso ainda não tenha.
 
 ```bash
 # Clone o repositório
@@ -28,6 +28,9 @@ bundle install
 bin/rails db:create db:migrate db:seed
 bin/rails dev:cache
 bin/rails s
+
+# Em um novo terminal dentro do VSCode e execute: 
+bin/rails solid_queue:start
 ```
 
 ## ✅ Funcionalidades implementadas
@@ -40,16 +43,17 @@ bin/rails s
 Aproveitei a oportunidade para utilizar a gem [solid-process](https://github.com/solid-process/solid-process) com o objetivo de experimentar uma nova abordagem para organizar a lógica de criação de um [novo histórico de alterações de moeda.](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/process/create_coin_log_process.rb)
 
 ### 2. **Solid Cache**
-Estava realmente curioso sobre o [solid cache](https://github.com/rails/solid_cache), então aproveitei a oportunidade para [usar](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/queries/coin_log_query.rb#L11) e fiquei impressionado como é simples.
+Estava curioso sobre o funcionamento da gem [solid_cache](https://github.com/rails/solid_cache), que é a nova solução nativa de cache do Rails. Decidi incorporá-la em uma [query de histórico de moeda.](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/queries/coin_log_query.rb#L11) 
 
-### 3. **Concern**
-O concern [soft_deletable](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/models/concerns/soft_deletable.rb) permite ocultar registros sem removê-los fisicamente do banco de dados, preservando a consistência das informações. Ele é de fácil reutilização: basta incluí-lo no model desejado e adicionar um campo deleted_at na respectiva tabela.
+### 3. **Solid Queue**
+Experimentei a gem [solid_queue](https://github.com/rails/solid_queue) para realizar o envio de um [job](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/jobs/notify_low_price_job.rb). A gem, também nativa do ecossistema Rails.
 
-### 4. **Query Object + pagy**
-Esse pattern tem a intenção de centralizar uma [consulta](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/queries/coin_log_query.rb) em uma única classe, permitindo sua reutilização em diferentes partes do sistema. Para a paginação dos registros, utilizei a gem [Pagy](https://rubygems.org/gems/pagy/versions/0.6.0?locale=pt-BR).
+### 4. **Concern**
+O concern [soft_deletable](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/models/concerns/soft_deletable.rb) permite ocultar registros sem removê-los do banco de dados, preservando a consistência das informações. Ele é de fácil reutilização: basta incluí-lo no model desejado e adicionar um campo deleted_at na respectiva tabela.
 
-### 5. **API namespaces**
-Utilizado para versionar e separar endpoints, isso pode facilitar a migração, permitindo que versões antigas e novas funcionem simultaneamente.
+### 5. **Query Object + pagy**
+Esse pattern tem o objetivo de centralizar uma [consulta](https://github.com/matiasarenhard/mbaonrails_arquitetura/blob/main/app/queries/coin_log_query.rb) em uma única classe, permitindo sua reutilização em diferentes partes do sistema. Para a paginação dos registros, utilizei a gem [Pagy](https://rubygems.org/gems/pagy/versions/0.6.0?locale=pt-BR).
+
 
 ----------------------------------------
 
