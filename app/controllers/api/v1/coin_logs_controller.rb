@@ -9,6 +9,7 @@ class Api::V1::CoinLogsController < Api::V1::ApplicationController
     result = CreateCoinLogProcess.call(coin_id: coin_params[:coin_id], price: coin_params[:price])
 
     if result.success?
+      NotifyLowPriceJob.perform_now(result.value[:coin_log][:price])
       render json: result.value, status: :created
     else
       render json: { errors: result.failure }, status: :unprocessable_entity
