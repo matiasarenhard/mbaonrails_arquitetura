@@ -30,7 +30,7 @@ development:
     <<: *default
     database: mbaonrails_arquitetura_development
   cache:
-    <<: *primary_development
+    <<: *default
     database: mbaonrails_arquitetura_development_cache
     migrations_paths: db/cache_migrate
 
