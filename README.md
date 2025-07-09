@@ -23,8 +23,7 @@ cd mbaonrails_arquitetura
 code .
 # Inicie o projeto dentro do dev container
 bundle install
-bin/rails db:create db:migrate
-bin/rails db:seed
+bin/rails db:create db:migrate db:seed
 bin/rails dev:cache
 bin/rails s
 ```
